@@ -1,0 +1,3 @@
+rootProject.name = 'demo-java-concurrency'
+
+include 'demo-fork-join'
