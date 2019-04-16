@@ -1,4 +1,4 @@
-package demo;
+package demo.d;
 
 import java.util.concurrent.ForkJoinPool;
 
