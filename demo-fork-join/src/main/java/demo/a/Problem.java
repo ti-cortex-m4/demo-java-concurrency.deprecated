@@ -2,12 +2,7 @@ package demo.a;
 
 import java.util.Random;
 
-/**
- *
- * This class defines a long list of integers which defines the problem we will
- * later try to solve
- *
- */
+
 public class Problem {
     private final int[] list = new int[2000000];
 
