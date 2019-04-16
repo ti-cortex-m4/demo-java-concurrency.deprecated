@@ -1,5 +1,7 @@
 package demo.a;
 
+import java.util.concurrent.ForkJoinPool;
+
 public class Test {
 
     public static void main(String[] args) {
@@ -8,7 +10,7 @@ public class Test {
         int nThreads = Runtime.getRuntime().availableProcessors();
         System.out.println(nThreads);
         Solver mfj = new Solver(test.getList());
-        ForkJoinExecutor pool = new ForkJoinPool(nThreads);
+        ForkJoinPool pool = new ForkJoinPool(nThreads);
         pool.invoke(mfj);
         long result = mfj.getResult();
         System.out.println("Done. Result: " + result);
