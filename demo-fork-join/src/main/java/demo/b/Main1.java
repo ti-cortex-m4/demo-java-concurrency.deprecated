@@ -2,10 +2,11 @@ package demo.b;
 
 import java.util.concurrent.ForkJoinPool;
 
-public class Main {
+public class Main1 {
+
     public static void main(String[] args) {
         ForkJoinPool forkJoinPool = ForkJoinPool.commonPool();
-        MyRecursiveAction myRecursiveAction = new MyRecursiveAction(24);
-        forkJoinPool.invoke(myRecursiveAction);
+        DemoRecursiveAction recursiveAction = new DemoRecursiveAction(24);
+        forkJoinPool.invoke(recursiveAction);
     }
 }

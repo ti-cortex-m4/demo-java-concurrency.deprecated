@@ -6,8 +6,8 @@ public class Main2 {
 
     public static void main(String[] args) {
         ForkJoinPool forkJoinPool = ForkJoinPool.commonPool();
-        MyRecursiveTask myRecursiveTask = new MyRecursiveTask(128);
-        long mergedResult = forkJoinPool.invoke(myRecursiveTask);
+        DemoRecursiveTask recursiveTask = new DemoRecursiveTask(128);
+        long mergedResult = forkJoinPool.invoke(recursiveTask);
         System.out.println("mergedResult = " + mergedResult);
     }
 }
