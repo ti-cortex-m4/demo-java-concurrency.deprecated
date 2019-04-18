@@ -8,10 +8,14 @@ public class Demo {
         ForkJoinPool forkJoinPool = ForkJoinPool.commonPool();
 
         // submit() or execute()
-        CustomRecursiveTask customRecursiveTask =new CustomRecursiveTask(new int[] {1,2,3,4,5,6});
-        forkJoinPool.execute(customRecursiveTask);
-        int result = customRecursiveTask.join();
+        CustomRecursiveTask task1 = new CustomRecursiveTask(new int[]{1, 2, 3, 4, 5, 6});
+        forkJoinPool.execute(task1);
+        System.out.println("execute/join " + task1.join());
 
-        // int result = forkJoinPool.invoke(customRecursiveTask);
+        CustomRecursiveTask task2 = new CustomRecursiveTask(new int[]{1, 2, 3, 4, 5, 6});
+        System.out.println("submit " + forkJoinPool.submit(task2));
+
+        CustomRecursiveTask task3 = new CustomRecursiveTask(new int[]{1, 2, 3, 4, 5, 6});
+        System.out.println("invoke " + forkJoinPool.invoke(task3));
     }
 }
