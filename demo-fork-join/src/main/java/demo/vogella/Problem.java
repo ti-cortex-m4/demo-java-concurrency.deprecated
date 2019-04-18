@@ -1,4 +1,4 @@
-package demo.a;
+package demo.vogella;
 
 import java.util.Random;
 

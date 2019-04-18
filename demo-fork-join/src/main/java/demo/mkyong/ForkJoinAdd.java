@@ -1,4 +1,4 @@
-package demo.c;
+package demo.mkyong;
 
 import java.util.concurrent.ForkJoinPool;
 import java.util.concurrent.ForkJoinTask;

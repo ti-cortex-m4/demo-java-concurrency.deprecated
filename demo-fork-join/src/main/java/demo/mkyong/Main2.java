@@ -1,4 +1,4 @@
-package demo.c;
+package demo.mkyong;
 
 public class Main2 {
 

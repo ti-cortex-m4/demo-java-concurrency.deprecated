@@ -1,4 +1,4 @@
-package demo.b;
+package demo.jenkov;
 
 import java.util.concurrent.ForkJoinPool;
 
