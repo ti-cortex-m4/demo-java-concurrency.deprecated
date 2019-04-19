@@ -1,4 +1,4 @@
-package demo.baeldung;
+package demo._baeldung;
 
 import java.util.concurrent.ForkJoinPool;
 

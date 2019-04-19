@@ -1,4 +1,4 @@
-package demo.vogella;
+package demo._vogella;
 
 import java.util.concurrent.ForkJoinPool;
 
