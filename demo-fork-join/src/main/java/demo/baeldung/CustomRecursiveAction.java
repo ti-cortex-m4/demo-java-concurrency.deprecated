@@ -20,7 +20,6 @@ public class CustomRecursiveAction extends RecursiveAction {
 
     @Override
     protected void compute() {
-
         if (workLoad.length() > THRESHOLD) {
             ForkJoinTask.invokeAll(createSubtasks());
         } else {
@@ -29,7 +28,6 @@ public class CustomRecursiveAction extends RecursiveAction {
     }
 
     private Collection<CustomRecursiveAction> createSubtasks() {
-
         List<CustomRecursiveAction> subtasks = new ArrayList<>();
 
         String partOne = workLoad.substring(0, workLoad.length() / 2);
@@ -43,7 +41,6 @@ public class CustomRecursiveAction extends RecursiveAction {
 
     private void processing(String work) {
         String result = work.toUpperCase();
-        logger.info("This result - (" + result + ") - was processed by " + Thread.currentThread()
-            .getName());
+        logger.info("This result - (" + result + ") - was processed by " + Thread.currentThread().getName());
     }
 }

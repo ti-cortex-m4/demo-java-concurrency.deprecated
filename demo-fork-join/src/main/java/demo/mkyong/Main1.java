@@ -2,7 +2,7 @@ package demo.mkyong;
 
 import java.util.concurrent.ForkJoinPool;
 
-public class Main {
+public class Main1 {
 
     public static void main(String[] args) {
         FibonacciRecursiveAction task = new FibonacciRecursiveAction(50);
