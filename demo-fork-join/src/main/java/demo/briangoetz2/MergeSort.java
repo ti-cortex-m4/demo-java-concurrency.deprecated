@@ -1,10 +1,13 @@
 package demo.briangoetz2;
 
 import java.util.Arrays;
+import java.util.Random;
 import java.util.concurrent.ForkJoinPool;
 import java.util.concurrent.RecursiveAction;
 
 public class MergeSort extends RecursiveAction {
+
+    private static final int SEQUENTIAL_THRESHOLD = 3;
 
     final int[] numbers;
     final int startPos, endPos;
@@ -35,7 +38,7 @@ public class MergeSort extends RecursiveAction {
 
     @Override
     protected void compute() {
-        if (size() < 3) { // threshold
+        if (size() < SEQUENTIAL_THRESHOLD) {
             System.arraycopy(numbers, startPos, result, 0, size());
             Arrays.sort(result, 0, size());
         } else {
@@ -48,6 +51,10 @@ public class MergeSort extends RecursiveAction {
     }
 
     public static void main(String[] args) {
+        test2();
+    }
+
+    private static void test1() {
         int[] numbers = {12, 23, 100, 1, 2, 9};
         int nThreads = 4;
         MergeSort mfj = new MergeSort(numbers, 0, numbers.length);
@@ -56,11 +63,23 @@ public class MergeSort extends RecursiveAction {
         printArray(mfj.result);
     }
 
+    private static void test2() {
+        int[] numbers = new int[1_000_000];
+        Random generator = new Random();
+        for (int i = 0; i < numbers.length; i++) {
+            numbers[i] = generator.nextInt();
+        }
+        int nThreads = 4;
+        MergeSort mfj = new MergeSort(numbers, 0, numbers.length);
+        ForkJoinPool pool = new ForkJoinPool(nThreads);
+        long startTime = System.currentTimeMillis();
+        pool.invoke(mfj);
+        System.out.println("Spent time: " + (System.currentTimeMillis() - startTime));
+    }
+
     private static void printArray(int[] arr) {
         for (int n : arr)
             System.out.printf("%d ", n);
         System.out.println();
     }
-
-    private static final long serialVersionUID = 1L;
 }

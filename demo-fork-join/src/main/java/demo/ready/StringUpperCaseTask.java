@@ -2,8 +2,15 @@ package demo.ready;
 
 import java.util.concurrent.ForkJoinTask;
 import java.util.concurrent.RecursiveTask;
+import java.util.logging.Logger;
 
 public class StringUpperCaseTask extends RecursiveTask<String> {
+
+    static {
+        System.setProperty("java.util.logging.SimpleFormatter.format", "%1$tH:%1$tM:%1$tS.%1$tL  %5$s  %n");
+    }
+
+    private static Logger logger = Logger.getAnonymousLogger();
 
     private final int threshold;
     private final String argument;
@@ -31,6 +38,6 @@ public class StringUpperCaseTask extends RecursiveTask<String> {
     }
 
     private void log(String s, String result) {
-        System.out.println(String.format("%-35s %-15s %s", Thread.currentThread().getName(), s, result));
+        logger.info(String.format("%-35s %-15s %s", Thread.currentThread().getName(), s, result));
     }
 }

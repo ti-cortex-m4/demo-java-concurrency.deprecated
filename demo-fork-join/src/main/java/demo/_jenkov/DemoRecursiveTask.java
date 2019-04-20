@@ -1,4 +1,4 @@
-package demo.jenkov;
+package demo._jenkov;
 
 import java.util.ArrayList;
 import java.util.List;
