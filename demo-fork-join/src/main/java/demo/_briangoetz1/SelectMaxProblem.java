@@ -1,15 +1,17 @@
-package demo.briangoetz2;
+package demo._briangoetz1;
 
 public class SelectMaxProblem {
 
     private final int[] numbers;
     private final int start;
     private final int end;
+    public final int size;
 
     public SelectMaxProblem(int[] numbers, int start, int end) {
         this.numbers = numbers;
         this.start = start;
         this.end = end;
+        this.size = end - start;
     }
 
     public int solveSequentially() {
@@ -24,9 +26,5 @@ public class SelectMaxProblem {
 
     public SelectMaxProblem subproblem(int subStart, int subEnd) {
         return new SelectMaxProblem(numbers, start + subStart, start + subEnd);
-    }
-
-    public int getSize() {
-        return end - start;
     }
 }

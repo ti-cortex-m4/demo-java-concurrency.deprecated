@@ -1,4 +1,4 @@
-package demo.briangoetz1;
+package demo._briangoetz1;
 
 import java.util.Random;
 import java.util.concurrent.ForkJoinPool;
