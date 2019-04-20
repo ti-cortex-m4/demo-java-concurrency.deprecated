@@ -1,5 +1,7 @@
 package demo.briangoetz2;
 
+import java.util.Arrays;
+import java.util.concurrent.ForkJoinPool;
 import java.util.concurrent.RecursiveAction;
 
 public class MergeSort2 extends RecursiveAction {
@@ -7,6 +9,13 @@ public class MergeSort2 extends RecursiveAction {
     final int[] numbers;
     final int startPos, endPos;
     final int[] result;
+
+    public MergeSort2(int[] numbers, int startPos, int endPos) {
+        this.numbers = numbers;
+        this.startPos = startPos;
+        this.endPos = endPos;
+        this.result = new int[size()];
+    }
 
     private void merge(MergeSort left, MergeSort right) {
         int i = 0, leftPos = 0, rightPos = 0, leftSize = left.size(), rightSize = right.size();
@@ -24,6 +33,8 @@ public class MergeSort2 extends RecursiveAction {
         return endPos - startPos;
     }
 
+  private static final int SEQUENTIAL_THRESHOLD = 3;
+
     protected void compute() {
         if (size() < SEQUENTIAL_THRESHOLD) {
             System.arraycopy(numbers, startPos, result, 0, size());
@@ -32,7 +43,7 @@ public class MergeSort2 extends RecursiveAction {
             int midpoint = size() / 2;
             MergeSort left = new MergeSort(numbers, startPos, startPos + midpoint);
             MergeSort right = new MergeSort(numbers, startPos + midpoint, endPos);
-            coInvoke(left, right);
+            invokeAll(left, right);
             merge(left, right);
         }
     }
