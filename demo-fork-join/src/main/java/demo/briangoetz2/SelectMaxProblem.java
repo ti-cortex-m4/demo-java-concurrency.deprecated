@@ -1,6 +1,7 @@
-package demo.y;
+package demo.briangoetz2;
 
 public class SelectMaxProblem {
+
     private final int[] numbers;
     private final int start;
     private final int end;

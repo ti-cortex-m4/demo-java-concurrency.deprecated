@@ -1,4 +1,8 @@
-package demo.y;
+package demo.briangoetz2;
+
+import java.util.concurrent.ForkJoinPool;
+import java.util.concurrent.ForkJoinTask;
+import java.util.concurrent.RecursiveAction;
 
 public class MaxWithFJ extends RecursiveAction {
     private final int threshold;
@@ -20,7 +24,7 @@ public class MaxWithFJ extends RecursiveAction {
             MaxWithFJ right = new MaxWithFJ(problem.subproblem(midpoint + 1,
                     problem.getSize()),
                     threshold);
-            invokeAll(new ForkJoinTask[]{left, right});
+            ForkJoinTask.invokeAll(new ForkJoinTask[]{left, right});
             result = Math.max(left.result, right.result);
         }
     }

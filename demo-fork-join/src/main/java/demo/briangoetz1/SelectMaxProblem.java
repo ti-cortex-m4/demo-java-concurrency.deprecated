@@ -1,4 +1,4 @@
-package demo.briangoetz;
+package demo.briangoetz1;
 
 public class SelectMaxProblem {
 
@@ -7,11 +7,11 @@ public class SelectMaxProblem {
     private final int end;
     public final int size;
 
-    public SelectMaxProblem(int[] numbers, int start, int end, int size) {
+    public SelectMaxProblem(int[] numbers, int start, int end) {
         this.numbers = numbers;
         this.start = start;
         this.end = end;
-        this.size = size;
+        this.size = end - start;
     }
 
     public int solveSequentially() {
