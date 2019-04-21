@@ -3,13 +3,8 @@ package demo.ready;
 import java.util.concurrent.RecursiveTask;
 
 class Fibonacci extends RecursiveTask<Integer> {
-
     final int n;
-
-    Fibonacci(int n) {
-        this.n = n;
-    }
-
+    Fibonacci(int n) { this.n = n; }
     protected Integer compute() {
         if (n <= 1)
             return n;
