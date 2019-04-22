@@ -58,4 +58,24 @@ class SumArrayTask extends RecursiveTask<Long> {
         SumArrayTask task = new SumArrayTask(numbers);
         System.out.println(fjp.invoke(task));
     }
+
+    class SumArrayProblem extends Problem {
+
+        public SumArrayProblem(int[] data, int size) {
+            super(data, size);
+        }
+
+        public SumArrayProblem(int[] data) {
+            super(data);
+        }
+
+        @Override
+        long solve(int l, int r) {
+            long sum = 0;
+            for (int c = l; c < r; c++) {
+                    sum += data[c];
+            }
+            return sum;
+        }
+    }
 }
