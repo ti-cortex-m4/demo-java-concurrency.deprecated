@@ -3,20 +3,20 @@ package demo.ready;
 import java.util.Arrays;
 import java.util.concurrent.RecursiveAction;
 
-class SortTask extends RecursiveAction {
+class SortArrayTask extends RecursiveAction {
 
     private static final int THRESHOLD = 1000;
 
     final long[] array;
     final int lo, hi;
 
-    SortTask(long[] array, int lo, int hi) {
+    SortArrayTask(long[] array, int lo, int hi) {
         this.array = array;
         this.lo = lo;
         this.hi = hi;
     }
 
-    SortTask(long[] array) {
+    SortArrayTask(long[] array) {
         this(array, 0, array.length);
     }
 
@@ -26,8 +26,8 @@ class SortTask extends RecursiveAction {
             sortSequentially(lo, hi);
         else {
             int mid = (lo + hi) >>> 1;
-            invokeAll(new SortTask(array, lo, mid),
-                    new SortTask(array, mid, hi));
+            invokeAll(new SortArrayTask(array, lo, mid),
+                    new SortArrayTask(array, mid, hi));
             merge(lo, mid, hi);
         }
     }

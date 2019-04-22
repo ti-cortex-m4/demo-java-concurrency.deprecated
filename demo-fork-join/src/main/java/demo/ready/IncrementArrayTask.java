@@ -2,14 +2,14 @@ package demo.ready;
 
 import java.util.concurrent.RecursiveAction;
 
-class IncrementTask extends RecursiveAction {
+class IncrementArrayTask extends RecursiveAction {
 
     private static final int THRESHOLD = 1000;
 
     final long[] array;
     final int lo, hi;
 
-    IncrementTask(long[] array, int lo, int hi) {
+    IncrementArrayTask(long[] array, int lo, int hi) {
         this.array = array;
         this.lo = lo;
         this.hi = hi;
@@ -22,8 +22,8 @@ class IncrementTask extends RecursiveAction {
                 array[i]++;
         } else {
             int mid = (lo + hi) >>> 1;
-            invokeAll(new IncrementTask(array, lo, mid),
-                    new IncrementTask(array, mid, hi));
+            invokeAll(new IncrementArrayTask(array, lo, mid),
+                    new IncrementArrayTask(array, mid, hi));
         }
     }
 }
