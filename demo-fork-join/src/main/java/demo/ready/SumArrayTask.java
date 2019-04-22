@@ -5,14 +5,14 @@ import java.util.concurrent.ForkJoinTask;
 import java.util.concurrent.RecursiveTask;
 import java.util.stream.LongStream;
 
-public class SumArrayTask extends RecursiveTask<Long> {
+class SumArrayTask extends RecursiveTask<Long> {
 
     private final long[] numbers;
     private final int start;
     private final int end;
     public static final long threshold = 10_000;
 
-    public SumArrayTask(long[] numbers) {
+    SumArrayTask(long[] numbers) {
         this(numbers, 0, numbers.length);
     }
 
@@ -50,9 +50,12 @@ public class SumArrayTask extends RecursiveTask<Long> {
         return result;
     }
 
-    public static long startForkJoinSum(long n) {
+    public static void main(String[] args) {
+        int n = 100;
         long[] numbers = LongStream.rangeClosed(1, n).toArray();
-        ForkJoinTask<Long> task = new SumArrayTask(numbers);
-        return new ForkJoinPool().invoke(task);
+
+        ForkJoinPool fjp = ForkJoinPool.commonPool();
+        SumArrayTask task = new SumArrayTask(numbers);
+        System.out.println(fjp.invoke(task));
     }
 }

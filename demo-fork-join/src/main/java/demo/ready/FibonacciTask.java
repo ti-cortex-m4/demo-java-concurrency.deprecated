@@ -5,10 +5,10 @@ import java.util.concurrent.RecursiveTask;
 
 class FibonacciTask extends RecursiveTask<Long> {
 
-    final int n;
-    final int threshold;
+    private final int n;
+    private final int threshold;
 
-    public FibonacciTask(int n, int threshold) {
+    FibonacciTask(int n, int threshold) {
         this.n = n;
         this.threshold = threshold;
     }
