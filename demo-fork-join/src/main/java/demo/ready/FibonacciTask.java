@@ -1,26 +1,26 @@
 package demo.ready;
 
-import java.math.BigDecimal;
-import java.math.MathContext;
-import java.math.RoundingMode;
 import java.util.concurrent.ForkJoinPool;
 import java.util.concurrent.RecursiveTask;
 
-class FibonacciTask extends RecursiveTask<Integer> {
+class FibonacciTask extends RecursiveTask<Long> {
 
     final int n;
+    final int threshold;
 
-    FibonacciTask(int n) {
+    public FibonacciTask(int n, int threshold) {
         this.n = n;
+        this.threshold = threshold;
     }
 
     @Override
-    protected Integer compute() {
-        if (n <= 1)
-            return n;
-        FibonacciTask f1 = new FibonacciTask(n - 1);
+    protected Long compute() {
+        if (n <= threshold) {
+            return fibonacciRecursive(n);
+        }
+        FibonacciTask f1 = new FibonacciTask(n - 1, threshold);
         f1.fork();
-        FibonacciTask f2 = new FibonacciTask(n - 2);
+        FibonacciTask f2 = new FibonacciTask(n - 2, threshold);
         return f2.compute() + f1.join();
     }
 
@@ -30,12 +30,12 @@ class FibonacciTask extends RecursiveTask<Integer> {
     }
 
     public static void main(String[] args) {
-        int n = 20;
+        int n = 40;
 
         System.out.println(fibonacciRecursive(n));
 
         ForkJoinPool fjp = ForkJoinPool.commonPool();
-        FibonacciTask task = new FibonacciTask(n);
+        FibonacciTask task = new FibonacciTask(n, 1);
         System.out.println(fjp.invoke(task));
     }
 }
