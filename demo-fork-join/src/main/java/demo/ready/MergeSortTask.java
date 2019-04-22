@@ -1,11 +1,11 @@
-package demo.briangoetz2;
+package demo.ready;
 
 import java.util.Arrays;
 import java.util.Random;
 import java.util.concurrent.ForkJoinPool;
 import java.util.concurrent.RecursiveAction;
 
-public class MergeSort extends RecursiveAction {
+public class MergeSortTask extends RecursiveAction {
 
     private static final int SEQUENTIAL_THRESHOLD = 3;
 
@@ -13,14 +13,14 @@ public class MergeSort extends RecursiveAction {
     final int startPos, endPos;
     final int[] result;
 
-    public MergeSort(int[] numbers, int startPos, int endPos) {
+    public MergeSortTask(int[] numbers, int startPos, int endPos) {
         this.numbers = numbers;
         this.startPos = startPos;
         this.endPos = endPos;
         this.result = new int[size()];
     }
 
-    private void merge(MergeSort left, MergeSort right) {
+    private void merge(MergeSortTask left, MergeSortTask right) {
         int i = 0, leftPos = 0, rightPos = 0, leftSize = left.size(), rightSize = right.size();
         while (leftPos < leftSize && rightPos < rightSize)
             result[i++] = (left.result[leftPos] <= right.result[rightPos])
@@ -43,8 +43,8 @@ public class MergeSort extends RecursiveAction {
             Arrays.sort(result, 0, size());
         } else {
             int midpoint = size() / 2;
-            MergeSort left = new MergeSort(numbers, startPos, startPos + midpoint);
-            MergeSort right = new MergeSort(numbers, startPos + midpoint, endPos);
+            MergeSortTask left = new MergeSortTask(numbers, startPos, startPos + midpoint);
+            MergeSortTask right = new MergeSortTask(numbers, startPos + midpoint, endPos);
             invokeAll(left, right);
             merge(left, right);
         }
@@ -57,7 +57,7 @@ public class MergeSort extends RecursiveAction {
     private static void test1() {
         int[] numbers = {12, 23, 100, 1, 2, 9};
         int nThreads = 4;
-        MergeSort mfj = new MergeSort(numbers, 0, numbers.length);
+        MergeSortTask mfj = new MergeSortTask(numbers, 0, numbers.length);
         ForkJoinPool pool = new ForkJoinPool(nThreads);
         pool.invoke(mfj);
         printArray(mfj.result);
@@ -70,7 +70,7 @@ public class MergeSort extends RecursiveAction {
             numbers[i] = generator.nextInt();
         }
         int nThreads = 4;
-        MergeSort mfj = new MergeSort(numbers, 0, numbers.length);
+        MergeSortTask mfj = new MergeSortTask(numbers, 0, numbers.length);
         ForkJoinPool pool = new ForkJoinPool(nThreads);
         long startTime = System.currentTimeMillis();
         pool.invoke(mfj);

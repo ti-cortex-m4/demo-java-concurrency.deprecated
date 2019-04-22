@@ -1,4 +1,4 @@
-package demo.briangoetz2;
+package demo.ready;
 
 public class SelectMaxProblem {
 

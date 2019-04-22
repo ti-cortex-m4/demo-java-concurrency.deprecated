@@ -1,15 +1,16 @@
-package demo.briangoetz2;
+package demo.ready;
 
 import java.util.concurrent.ForkJoinPool;
 import java.util.concurrent.ForkJoinTask;
 import java.util.concurrent.RecursiveAction;
 
-public class MaxWithFJ extends RecursiveAction {
+public class SelectMaxTask extends RecursiveAction {
+
     private final int threshold;
     private final SelectMaxProblem problem;
     public int result;
 
-    public MaxWithFJ(SelectMaxProblem problem, int threshold) {
+    public SelectMaxTask(SelectMaxProblem problem, int threshold) {
         this.problem = problem;
         this.threshold = threshold;
     }
@@ -20,10 +21,8 @@ public class MaxWithFJ extends RecursiveAction {
             result = problem.solveSequentially();
         else {
             int midpoint = problem.getSize() / 2;
-            MaxWithFJ left = new MaxWithFJ(problem.subproblem(0, midpoint + 1), threshold);
-            MaxWithFJ right = new MaxWithFJ(problem.subproblem(midpoint + 1,
-                    problem.getSize()),
-                    threshold);
+            SelectMaxTask left = new SelectMaxTask(problem.subproblem(0, midpoint + 1), threshold);
+            SelectMaxTask right = new SelectMaxTask(problem.subproblem(midpoint + 1, problem.getSize()), threshold);
             ForkJoinTask.invokeAll(new ForkJoinTask[]{left, right});
             result = Math.max(left.result, right.result);
         }
@@ -34,7 +33,7 @@ public class MaxWithFJ extends RecursiveAction {
         SelectMaxProblem problem = new SelectMaxProblem(data, 0, data.length);
         int threshold = 3;
         int nThreads = 4;
-        MaxWithFJ mfj = new MaxWithFJ(problem, threshold);
+        SelectMaxTask mfj = new SelectMaxTask(problem, threshold);
         ForkJoinPool pool = new ForkJoinPool(nThreads);
         pool.invoke(mfj);
         int result = mfj.result;
