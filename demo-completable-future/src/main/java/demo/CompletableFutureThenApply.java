@@ -3,11 +3,12 @@ package demo;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 
-public class CompletableFutureRunAsync {
+public class CompletableFutureThenApply {
 
     public static void main(String[] args) throws InterruptedException, ExecutionException  {
-        CompletableFuture<Void> future = CompletableFuture.runAsync(() -> System.out.println("Hello"));
-        Void result = future.get();
+        CompletableFuture<String> future1 = CompletableFuture.supplyAsync(() -> "Hello");
+        CompletableFuture<String> future2 = future1.thenApply(s -> s + " World");
+        String result = future2.get();
         System.out.println("Result: " + result);
     }
 }
