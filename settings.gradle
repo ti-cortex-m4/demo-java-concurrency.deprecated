@@ -2,3 +2,4 @@ rootProject.name = 'demo-java-concurrency'
 
 include 'demo-fork-join'
 include 'demo-future'
+include 'demo-completable-future'
