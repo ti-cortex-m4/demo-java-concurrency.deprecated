@@ -5,7 +5,7 @@ import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 
-public class CompletableFutureCancel {
+public class Cancel {
 
     static Future<String> calculateAsyncWithCancellation()  {
         CompletableFuture<String> completableFuture  = new CompletableFuture<>();

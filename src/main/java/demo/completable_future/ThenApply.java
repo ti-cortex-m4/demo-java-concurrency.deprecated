@@ -3,7 +3,7 @@ package demo.completable_future;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 
-public class CompletableFutureThenApply {
+public class ThenApply {
 
     public static void main(String[] args) throws InterruptedException, ExecutionException  {
         CompletableFuture<String> future1 = CompletableFuture.supplyAsync(() -> "Hello");
