@@ -9,7 +9,7 @@ import java.util.concurrent.ExecutionException;
 public class SupplyAsync extends Demo {
 
     public static void main(String[] args) throws InterruptedException, ExecutionException {
-        CompletableFuture<String> future = CompletableFuture.supplyAsync(() -> "get from Supplier asynchronously");
+        CompletableFuture<String> future = CompletableFuture.supplyAsync(() -> delayed("value"));
         log("result: " + future.get());
     }
 }
