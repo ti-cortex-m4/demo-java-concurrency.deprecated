@@ -18,7 +18,7 @@ public class Cancel extends Demo {
         });
         log("cancel: " + future.cancel(true));
         log("is cancelled: " + future.isCancelled());
-        log("result: " + future.get());
+        log("result: " + future.get()); // CancellationException
 
         executorService.shutdown(); // never happens
     }
