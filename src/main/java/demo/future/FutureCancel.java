@@ -10,7 +10,7 @@ public class FutureCancel {
     public static void main(String[] args) throws InterruptedException, ExecutionException {
         ExecutorService executorService = Executors.newFixedThreadPool(1);
 
-        Future<Integer> future = new SquareCalculator(executorService).calculate(10);
+        Future<String> future = new Futures(executorService).toUpperCase("value");
         System.out.println("Cancel result: " + future.cancel(true));
 
         if (future.isCancelled()) {

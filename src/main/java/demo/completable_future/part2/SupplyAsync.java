@@ -1,6 +1,6 @@
 package demo.completable_future.part2;
 
-import demo.completable_future.Demo;
+import demo.Demo;
 
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;

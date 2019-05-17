@@ -10,10 +10,10 @@ public class FuturesIsDone {
     public static void main(String[] args) throws InterruptedException, ExecutionException {
         ExecutorService executorService = Executors.newFixedThreadPool(1);//1
 
-        SquareCalculator squareCalculator = new SquareCalculator(executorService);
+        Futures futures = new Futures(executorService);
 
-        Future<Integer> future1 = squareCalculator.calculate(10);
-        Future<Integer> future2 = squareCalculator.calculate(100);
+        Future<String> future1 = futures.toUpperCase("a");
+        Future<String> future2 = futures.toUpperCase("bcd");
 
         while (!(future1.isDone() && future2.isDone())) {
             System.out.println(
@@ -26,8 +26,8 @@ public class FuturesIsDone {
             Thread.sleep(300);
         }
 
-        Integer result1 = future1.get();
-        Integer result2 = future2.get();
+        String result1 = future1.get();
+        String result2 = future2.get();
 
         System.out.println(result1 + " and " + result2);
 

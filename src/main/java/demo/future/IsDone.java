@@ -1,24 +1,23 @@
 package demo.future;
 
+import demo.Demo;
+
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 
-public class FutureIsDone {
+public class IsDone extends Demo {
 
     public static void main(String[] args) throws InterruptedException, ExecutionException {
-        ExecutorService executorService = Executors.newFixedThreadPool(1);
+        ExecutorService executorService = Executors.newSingleThreadExecutor();
 
-        Future<Integer> future = new SquareCalculator(executorService).calculate(10);
-
+        Future<String> future = new Futures(executorService).toUpperCase("value");
         while(!future.isDone()) {
-            System.out.println("Calculating...");
+            log("calculating...");
             Thread.sleep(300);
         }
-
-        Integer result = future.get();
-        System.out.println(result);
+        log("result: " + future.get());
 
         executorService.shutdown();
     }
