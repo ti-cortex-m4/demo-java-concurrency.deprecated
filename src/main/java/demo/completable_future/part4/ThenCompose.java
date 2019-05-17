@@ -8,8 +8,8 @@ import java.util.concurrent.ExecutionException;
 public class ThenCompose extends Demo {
 
     public static void main(String[] args) throws InterruptedException, ExecutionException {
-        CompletableFuture<String> future = CompletableFuture.supplyAsync(() -> delayed("Hello "))
-                .thenCompose(s -> CompletableFuture.supplyAsync(() -> delayed(s + "World")));
+        CompletableFuture<String> future = CompletableFuture.supplyAsync(() -> delayed("sequential1"))
+                .thenCompose(s -> CompletableFuture.supplyAsync(() -> delayed(s + " sequential2")));
         log("result: " + future.get());
     }
 }
