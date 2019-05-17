@@ -5,11 +5,13 @@ import demo.completable_future.Demo;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 
+// run Runnable after finishing one future
 public class RunAfterEither extends Demo {
 
     public static void main(String[] args) throws InterruptedException, ExecutionException {
-        CompletableFuture.supplyAsync(() -> delayed("Hello "))
-                .runAfterEither(CompletableFuture.supplyAsync(() -> delayed("World ")), () -> log("Finish"))
+        CompletableFuture.supplyAsync(() -> delayed("parallel1", 1))
+                .runAfterEither(CompletableFuture.supplyAsync(() -> delayed("parallel2", 2)),
+                        () -> log("finished one"))
                 .get();
     }
 }
