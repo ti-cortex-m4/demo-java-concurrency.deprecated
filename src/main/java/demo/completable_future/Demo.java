@@ -22,21 +22,14 @@ public class Demo {
         }
     }
 
-    protected static void delay() {
-        delay(1);
-    }
-
-    protected static String delayed(String s) {
-        log(s + " started");
-        delay();
-        log(s + " finished");
-        return s;
-    }
-
     protected static String delayed(String s, int delay) {
         log(s + " started");
         delay(delay);
         log(s + " finished");
         return s;
+    }
+
+    protected static String delayed(String s) {
+        return delayed(s, 1);
     }
 }
