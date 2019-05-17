@@ -5,7 +5,7 @@ import demo.completable_future.Demo;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 
-// apply result in Function after finishing one future
+// apply result in Function after finishing any future
 public class ApplyToEither extends Demo {
 
     public static void main(String[] args) throws InterruptedException, ExecutionException {

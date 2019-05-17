@@ -5,7 +5,7 @@ import demo.completable_future.Demo;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 
-// accept result in Consumer after finishing one future
+// accept result in Consumer after finishing any future
 public class AcceptEither extends Demo {
 
     public static void main(String[] args) throws InterruptedException, ExecutionException {
