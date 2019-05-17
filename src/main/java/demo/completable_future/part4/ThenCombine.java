@@ -10,7 +10,8 @@ public class ThenCombine extends Demo {
 
     public static void main(String[] args) throws InterruptedException, ExecutionException {
         CompletableFuture<String> future = CompletableFuture.supplyAsync(() -> delayed("parallel1"))
-                .thenCombine(CompletableFuture.supplyAsync(() -> delayed("parallel2")), (s1, s2) -> s1 + s2);
+                .thenCombine(CompletableFuture.supplyAsync(() -> delayed("parallel2")),
+                        (s1, s2) -> s1 + " " + s2);
         log("result: " + future.get());
     }
 }
