@@ -5,7 +5,7 @@ import java.util.concurrent.TimeUnit;
 public class Demo {
 
     static {
-        System.setProperty("java.util.logging.SimpleFormatter.format", "%1$tH:%1$tM:%1$tS.%1$tL  %5$s  %n");
+        System.setProperty("java.util.logging.SimpleFormatter.format", "%1$tH:%1$tM:%1$tS.%1$tL %5$s %n");
     }
 
     private static java.util.logging.Logger LOGGER = java.util.logging.Logger.getAnonymousLogger();
