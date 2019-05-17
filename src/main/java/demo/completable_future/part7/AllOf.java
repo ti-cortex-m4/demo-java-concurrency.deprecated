@@ -20,7 +20,7 @@ public class AllOf extends Demo {
 
         String result = Stream.of(future1, future2, future3)
                 .map(CompletableFuture::join)
-                .collect(Collectors.joining(" "));
+                .collect(Collectors.joining(", "));
 
         log("result: " + result);
     }
